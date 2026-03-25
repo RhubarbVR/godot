@@ -384,6 +384,24 @@ private:
 			sorter.sort(elements.ptr(), elements.size());
 		}
 
+		struct SceneSortAndPriority {
+			_FORCE_INLINE_ bool operator()(const GeometryInstanceSurfaceDataCache *A, const GeometryInstanceSurfaceDataCache *B) const {
+				if (A->sort.priority == B->sort.priority) {
+					if (A->owner->depth == B->owner->depth) {
+						return A->surface_index < B->surface_index;
+					}
+					return A->owner->depth > B->owner->depth;
+				}
+				return (A->sort.priority < B->sort.priority);
+			}
+		};
+
+		void sort_by_surface_index_reverse_depth_and_priority() { //used for alpha
+
+			SortArray<GeometryInstanceSurfaceDataCache *, SceneSortAndPriority> sorter;
+			sorter.sort(elements.ptr(), elements.size());
+		}
+
 		_FORCE_INLINE_ void add_element(GeometryInstanceSurfaceDataCache *p_element) {
 			elements.push_back(p_element);
 		}

@@ -2446,7 +2446,7 @@ void RasterizerSceneGLES3::render_scene(const Ref<RenderSceneBuffers> &p_render_
 
 	_fill_render_list(RENDER_LIST_OPAQUE, &render_data, PASS_MODE_COLOR);
 	render_list[RENDER_LIST_OPAQUE].sort_by_key();
-	render_list[RENDER_LIST_ALPHA].sort_by_reverse_depth_and_priority();
+	render_list[RENDER_LIST_ALPHA].sort_by_surface_index_reverse_depth_and_priority();
 
 	bool draw_sky = false;
 	bool draw_sky_fog_only = false;
