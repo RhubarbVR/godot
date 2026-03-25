@@ -920,7 +920,7 @@ void RenderForwardMobile::_render_scene(RenderDataRD *p_render_data, const Color
 	} else {
 		render_list[RENDER_LIST_OPAQUE].sort_by_key();
 	}
-	render_list[RENDER_LIST_ALPHA].sort_by_reverse_depth_and_priority();
+	render_list[RENDER_LIST_ALPHA].sort_by_surface_index_reverse_depth_and_priority();
 
 	_fill_instance_data(RENDER_LIST_OPAQUE);
 	_fill_instance_data(RENDER_LIST_ALPHA);
